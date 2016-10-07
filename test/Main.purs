@@ -2,8 +2,15 @@ module Test.Main where
 
 import Prelude
 import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
+import Test.Assert (assert, ASSERT)
 
-main :: forall e. Eff (console :: CONSOLE | e) Unit
+import Euler (answer)
+
+main :: forall t1.
+      Eff
+        ( assert :: ASSERT
+        | t1
+        )
+        Unit
 main = do
-  log "You should add some tests."
+  assert (answer == 233168)
